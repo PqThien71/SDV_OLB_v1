@@ -28,45 +28,51 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.hSmartWindowControl1 = new HalconDotNet.HSmartWindowControl();
-            this.hSmartWindowControl2 = new HalconDotNet.HSmartWindowControl();
+            this.WindowControl11 = new HalconDotNet.HSmartWindowControl();
+            this.WindowControl12 = new HalconDotNet.HSmartWindowControl();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.pnHeader = new System.Windows.Forms.Panel();
+            this.btnCam1 = new System.Windows.Forms.Button();
+            this.btnCam2 = new System.Windows.Forms.Button();
+            this.btnSettingCam1 = new System.Windows.Forms.Button();
+            this.btnSettingCam2 = new System.Windows.Forms.Button();
+            this.pnHeader.SuspendLayout();
             this.SuspendLayout();
             // 
-            // hSmartWindowControl1
+            // WindowControl11
             // 
-            this.hSmartWindowControl1.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.hSmartWindowControl1.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.hSmartWindowControl1.HDoubleClickToFitContent = true;
-            this.hSmartWindowControl1.HDrawingObjectsModifier = HalconDotNet.HSmartWindowControl.DrawingObjectsModifier.None;
-            this.hSmartWindowControl1.HImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
-            this.hSmartWindowControl1.HKeepAspectRatio = true;
-            this.hSmartWindowControl1.HMoveContent = true;
-            this.hSmartWindowControl1.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
-            this.hSmartWindowControl1.Location = new System.Drawing.Point(9, 256);
-            this.hSmartWindowControl1.Margin = new System.Windows.Forms.Padding(0);
-            this.hSmartWindowControl1.Name = "hSmartWindowControl1";
-            this.hSmartWindowControl1.Size = new System.Drawing.Size(571, 392);
-            this.hSmartWindowControl1.TabIndex = 0;
-            this.hSmartWindowControl1.WindowSize = new System.Drawing.Size(571, 392);
+            this.WindowControl11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.WindowControl11.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.WindowControl11.HDoubleClickToFitContent = true;
+            this.WindowControl11.HDrawingObjectsModifier = HalconDotNet.HSmartWindowControl.DrawingObjectsModifier.None;
+            this.WindowControl11.HImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
+            this.WindowControl11.HKeepAspectRatio = true;
+            this.WindowControl11.HMoveContent = true;
+            this.WindowControl11.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
+            this.WindowControl11.Location = new System.Drawing.Point(9, 256);
+            this.WindowControl11.Margin = new System.Windows.Forms.Padding(0);
+            this.WindowControl11.Name = "WindowControl11";
+            this.WindowControl11.Size = new System.Drawing.Size(571, 392);
+            this.WindowControl11.TabIndex = 0;
+            this.WindowControl11.WindowSize = new System.Drawing.Size(571, 392);
             // 
-            // hSmartWindowControl2
+            // WindowControl12
             // 
-            this.hSmartWindowControl2.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.hSmartWindowControl2.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.hSmartWindowControl2.HDoubleClickToFitContent = true;
-            this.hSmartWindowControl2.HDrawingObjectsModifier = HalconDotNet.HSmartWindowControl.DrawingObjectsModifier.None;
-            this.hSmartWindowControl2.HImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
-            this.hSmartWindowControl2.HKeepAspectRatio = true;
-            this.hSmartWindowControl2.HMoveContent = true;
-            this.hSmartWindowControl2.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
-            this.hSmartWindowControl2.Location = new System.Drawing.Point(588, 256);
-            this.hSmartWindowControl2.Margin = new System.Windows.Forms.Padding(0);
-            this.hSmartWindowControl2.Name = "hSmartWindowControl2";
-            this.hSmartWindowControl2.Size = new System.Drawing.Size(563, 392);
-            this.hSmartWindowControl2.TabIndex = 1;
-            this.hSmartWindowControl2.WindowSize = new System.Drawing.Size(563, 392);
+            this.WindowControl12.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.WindowControl12.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.WindowControl12.HDoubleClickToFitContent = true;
+            this.WindowControl12.HDrawingObjectsModifier = HalconDotNet.HSmartWindowControl.DrawingObjectsModifier.None;
+            this.WindowControl12.HImagePart = new System.Drawing.Rectangle(0, 0, 640, 480);
+            this.WindowControl12.HKeepAspectRatio = true;
+            this.WindowControl12.HMoveContent = true;
+            this.WindowControl12.HZoomContent = HalconDotNet.HSmartWindowControl.ZoomContent.WheelForwardZoomsIn;
+            this.WindowControl12.Location = new System.Drawing.Point(588, 256);
+            this.WindowControl12.Margin = new System.Windows.Forms.Padding(0);
+            this.WindowControl12.Name = "WindowControl12";
+            this.WindowControl12.Size = new System.Drawing.Size(563, 392);
+            this.WindowControl12.TabIndex = 1;
+            this.WindowControl12.WindowSize = new System.Drawing.Size(563, 392);
             // 
             // label1
             // 
@@ -88,27 +94,85 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Cam2";
             // 
+            // pnHeader
+            // 
+            this.pnHeader.Controls.Add(this.btnCam2);
+            this.pnHeader.Controls.Add(this.btnCam1);
+            this.pnHeader.Location = new System.Drawing.Point(9, 12);
+            this.pnHeader.Name = "pnHeader";
+            this.pnHeader.Size = new System.Drawing.Size(1139, 210);
+            this.pnHeader.TabIndex = 4;
+            // 
+            // btnCam1
+            // 
+            this.btnCam1.BackColor = System.Drawing.Color.Red;
+            this.btnCam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCam1.ForeColor = System.Drawing.Color.Black;
+            this.btnCam1.Location = new System.Drawing.Point(673, 3);
+            this.btnCam1.Name = "btnCam1";
+            this.btnCam1.Size = new System.Drawing.Size(159, 46);
+            this.btnCam1.TabIndex = 0;
+            this.btnCam1.Text = "CAMERA1";
+            this.btnCam1.UseVisualStyleBackColor = false;
+            // 
+            // btnCam2
+            // 
+            this.btnCam2.BackColor = System.Drawing.Color.Red;
+            this.btnCam2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCam2.ForeColor = System.Drawing.Color.Black;
+            this.btnCam2.Location = new System.Drawing.Point(838, 3);
+            this.btnCam2.Name = "btnCam2";
+            this.btnCam2.Size = new System.Drawing.Size(159, 46);
+            this.btnCam2.TabIndex = 1;
+            this.btnCam2.Text = "CAMERA2";
+            this.btnCam2.UseVisualStyleBackColor = false;
+            // 
+            // btnSettingCam1
+            // 
+            this.btnSettingCam1.Location = new System.Drawing.Point(555, 229);
+            this.btnSettingCam1.Name = "btnSettingCam1";
+            this.btnSettingCam1.Size = new System.Drawing.Size(24, 23);
+            this.btnSettingCam1.TabIndex = 5;
+            this.btnSettingCam1.UseVisualStyleBackColor = true;
+            // 
+            // btnSettingCam2
+            // 
+            this.btnSettingCam2.Location = new System.Drawing.Point(1124, 230);
+            this.btnSettingCam2.Name = "btnSettingCam2";
+            this.btnSettingCam2.Size = new System.Drawing.Size(24, 23);
+            this.btnSettingCam2.TabIndex = 6;
+            this.btnSettingCam2.UseVisualStyleBackColor = true;
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 669);
+            this.Controls.Add(this.btnSettingCam2);
+            this.Controls.Add(this.btnSettingCam1);
+            this.Controls.Add(this.pnHeader);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.hSmartWindowControl2);
-            this.Controls.Add(this.hSmartWindowControl1);
+            this.Controls.Add(this.WindowControl12);
+            this.Controls.Add(this.WindowControl11);
             this.Name = "fmMain";
             this.Text = "RTC";
             this.Load += new System.EventHandler(this.fmMain_Load);
+            this.pnHeader.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private HalconDotNet.HSmartWindowControl hSmartWindowControl1;
-        private HalconDotNet.HSmartWindowControl hSmartWindowControl2;
+        private HalconDotNet.HSmartWindowControl WindowControl11;
+        private HalconDotNet.HSmartWindowControl WindowControl12;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Panel pnHeader;
+        private System.Windows.Forms.Button btnCam2;
+        private System.Windows.Forms.Button btnCam1;
+        private System.Windows.Forms.Button btnSettingCam1;
+        private System.Windows.Forms.Button btnSettingCam2;
     }
 }
