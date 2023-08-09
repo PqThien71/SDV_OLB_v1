@@ -37,6 +37,9 @@
             this.btnCam2 = new System.Windows.Forms.Button();
             this.btnSettingCam1 = new System.Windows.Forms.Button();
             this.btnSettingCam2 = new System.Windows.Forms.Button();
+            this.btnSnapCam1 = new System.Windows.Forms.Button();
+            this.btnSnapCam2 = new System.Windows.Forms.Button();
+            this.btnPLCconnect = new System.Windows.Forms.Button();
             this.pnHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -96,6 +99,7 @@
             // 
             // pnHeader
             // 
+            this.pnHeader.Controls.Add(this.btnPLCconnect);
             this.pnHeader.Controls.Add(this.btnCam2);
             this.pnHeader.Controls.Add(this.btnCam1);
             this.pnHeader.Location = new System.Drawing.Point(9, 12);
@@ -108,7 +112,7 @@
             this.btnCam1.BackColor = System.Drawing.Color.Red;
             this.btnCam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCam1.ForeColor = System.Drawing.Color.Black;
-            this.btnCam1.Location = new System.Drawing.Point(673, 3);
+            this.btnCam1.Location = new System.Drawing.Point(699, 0);
             this.btnCam1.Name = "btnCam1";
             this.btnCam1.Size = new System.Drawing.Size(159, 46);
             this.btnCam1.TabIndex = 0;
@@ -120,7 +124,7 @@
             this.btnCam2.BackColor = System.Drawing.Color.Red;
             this.btnCam2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCam2.ForeColor = System.Drawing.Color.Black;
-            this.btnCam2.Location = new System.Drawing.Point(838, 3);
+            this.btnCam2.Location = new System.Drawing.Point(854, 0);
             this.btnCam2.Name = "btnCam2";
             this.btnCam2.Size = new System.Drawing.Size(159, 46);
             this.btnCam2.TabIndex = 1;
@@ -143,11 +147,44 @@
             this.btnSettingCam2.TabIndex = 6;
             this.btnSettingCam2.UseVisualStyleBackColor = true;
             // 
+            // btnSnapCam1
+            // 
+            this.btnSnapCam1.Location = new System.Drawing.Point(525, 229);
+            this.btnSnapCam1.Name = "btnSnapCam1";
+            this.btnSnapCam1.Size = new System.Drawing.Size(24, 23);
+            this.btnSnapCam1.TabIndex = 7;
+            this.btnSnapCam1.UseVisualStyleBackColor = true;
+            this.btnSnapCam1.Click += new System.EventHandler(this.btnSnapCam1_Click);
+            // 
+            // btnSnapCam2
+            // 
+            this.btnSnapCam2.Location = new System.Drawing.Point(1094, 229);
+            this.btnSnapCam2.Name = "btnSnapCam2";
+            this.btnSnapCam2.Size = new System.Drawing.Size(24, 23);
+            this.btnSnapCam2.TabIndex = 8;
+            this.btnSnapCam2.UseVisualStyleBackColor = true;
+            this.btnSnapCam2.Click += new System.EventHandler(this.btnSnapCam2_Click);
+            // 
+            // btnPLCconnect
+            // 
+            this.btnPLCconnect.BackColor = System.Drawing.Color.Red;
+            this.btnPLCconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPLCconnect.ForeColor = System.Drawing.Color.Black;
+            this.btnPLCconnect.Location = new System.Drawing.Point(1009, 0);
+            this.btnPLCconnect.Name = "btnPLCconnect";
+            this.btnPLCconnect.Size = new System.Drawing.Size(130, 46);
+            this.btnPLCconnect.TabIndex = 2;
+            this.btnPLCconnect.Text = "PLC";
+            this.btnPLCconnect.UseVisualStyleBackColor = false;
+            this.btnPLCconnect.Click += new System.EventHandler(this.btnPLCconnect_Click);
+            // 
             // fmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1160, 669);
+            this.Controls.Add(this.btnSnapCam2);
+            this.Controls.Add(this.btnSnapCam1);
             this.Controls.Add(this.btnSettingCam2);
             this.Controls.Add(this.btnSettingCam1);
             this.Controls.Add(this.pnHeader);
@@ -174,5 +211,8 @@
         private System.Windows.Forms.Button btnCam1;
         private System.Windows.Forms.Button btnSettingCam1;
         private System.Windows.Forms.Button btnSettingCam2;
+        private System.Windows.Forms.Button btnSnapCam1;
+        private System.Windows.Forms.Button btnSnapCam2;
+        private System.Windows.Forms.Button btnPLCconnect;
     }
 }

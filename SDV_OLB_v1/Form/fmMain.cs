@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace SDV_OLB_v1
 {
@@ -20,12 +21,20 @@ namespace SDV_OLB_v1
         bool _camConect2 = false;
         bool _isLiveCam1 = false;
         bool _isLiveCam2 = false;
-
+        bool _isManual = false;
+        bool _isConnectPLC1 = false;
+        bool _isConnectPLC2 = false;
+        bool _isAuto = false;
         //----------------------------------------------------------------------------------//
-
+        PLC3eClient plcCAM1 = null;
+        PLC3eClient plcCAM2 = null;
         List<CamSetting> _lstCamSettings = new List<CamSetting>();
         CamSetting _camSetting1 = new CamSetting();
         CamSetting _camSetting2 = new CamSetting();
+
+        cDeviceSetting _cDevice = new cDeviceSetting();
+
+
         //########################## Frame and Himage
 
         public HTuple _frameGrabber1 = null;
@@ -34,6 +43,10 @@ namespace SDV_OLB_v1
         public static HTuple _frameGrabber2trans;
         public HWindow _Window11;
         public HWindow _Window12;
+        HObject _ImageManual1 = null;
+        HObject _ImageManual2;
+        HObject ImgReadfolder;
+
 
 
         //----------------------------------------------------------------------------------//
@@ -46,6 +59,31 @@ namespace SDV_OLB_v1
             InitializeComponent();
         }
 
+
+        private HObject snap(HWindow _window, HTuple framGraber, HObject _Image, int IndexCam, int position)
+        {
+            if (framGraber != null)
+            {
+                try
+                {
+                    //_Img.Dispose();
+                    HOperatorSet.GrabImage(out _Image, framGraber);
+                    HOperatorSet.GetImageSize(_Image, out HTuple _width, out HTuple _heigh);
+                    _window.SetPart(new HTuple(0), new HTuple(0), _heigh, _width);
+                    _Image.DispObj(_window);
+
+                }
+                catch
+                {
+
+                }
+                //_Img = _frameGrabber.GrabImage();
+                return _Image;
+
+            }
+            else return new HObject();
+
+        }
         void loadCamSetting()
         {
             _lstCamSettings.Clear();
@@ -83,7 +121,65 @@ namespace SDV_OLB_v1
             }
         }
 
+        public void loadcDevicePLC()
+        {
+            // Load Data Cam 1
+            DataTable dttb1 = Lib.GetTableData(string.Format(@"select * from SettingPLC where Cam ={0}", 1),_pathVisionDB);
+            if (dttb1.Rows.Count > 0)
+            {
+                _cDevice.IPAdress = dttb1.Rows[0]["IPAdress"].ToString();
+                _cDevice.Port1 = Lib.ToInt(dttb1.Rows[0]["Port1"]);
+                _cDevice.Port2 = Lib.ToInt(dttb1.Rows[0]["Port2"]);
+                _cDevice.Ready1 = Lib.ToInt(dttb1.Rows[0]["Ready"]);
+                _cDevice.ImageOK1 = Lib.ToInt(dttb1.Rows[0]["ImageOK"]);//
+                _cDevice.TopL1 = Lib.ToInt(dttb1.Rows[0]["TopL"]);
+                _cDevice.TopR1 = Lib.ToInt(dttb1.Rows[0]["TopR"]);
+                _cDevice.BotL1 = Lib.ToInt(dttb1.Rows[0]["BotL"]);
+                _cDevice.BotR1 = Lib.ToInt(dttb1.Rows[0]["BotR"]);
+                _cDevice.Left1 = Lib.ToInt(dttb1.Rows[0]["Left"]);
+                _cDevice.Right1 = Lib.ToInt(dttb1.Rows[0]["Right"]);
+                _cDevice.Result1 = Lib.ToInt(dttb1.Rows[0]["Result"]);
+                _cDevice.Bubble1 = Lib.ToInt(dttb1.Rows[0]["Bubble"]);
+                _cDevice.CompleteImage1 = Lib.ToInt(dttb1.Rows[0]["CompleteImage"]);
+                _cDevice.MarkNG1 = Lib.ToInt(dttb1.Rows[0]["MarkNG"]);
+                _cDevice.Triger1 = Lib.ToInt(dttb1.Rows[0]["Triger"]);
+                _cDevice.Position1 = Lib.ToInt(dttb1.Rows[0]["Position"]);
+                _cDevice.CompleteResult1 = Lib.ToInt(dttb1.Rows[0]["CompleteResult"]);
+                _cDevice.LenghL1 = Lib.ToInt(dttb1.Rows[0]["Lengh"]);
+                _cDevice.LenghR1 = Lib.ToInt(dttb1.Rows[0]["Width"]);
+                _cDevice.ScoreL1 = Lib.ToInt(dttb1.Rows[0]["ScoreL"]);
+                _cDevice.ScoreR1 = Lib.ToInt(dttb1.Rows[0]["ScoreR"]);
+                _cDevice.DataBarcode1 = Lib.ToInt(dttb1.Rows[0]["DataBarcode"]);
+                _cDevice.ScoreInput = Lib.ToInt(dttb1.Rows[0]["ScoreInput"]);
+            }
 
+            DataTable dttb2 = Lib.GetTableData(string.Format(@"select * from SettingPLC where Cam ={0}", 2),_pathVisionDB);
+            if (dttb2.Rows.Count > 0)
+            {
+                _cDevice.Ready2 = Lib.ToInt(dttb2.Rows[0]["Ready"]);
+                _cDevice.ImageOK2 = Lib.ToInt(dttb2.Rows[0]["ImageOK"]);//
+                _cDevice.TopL2 = Lib.ToInt(dttb2.Rows[0]["TopL"]);
+                _cDevice.TopR2 = Lib.ToInt(dttb2.Rows[0]["TopR"]);
+                _cDevice.BotL2 = Lib.ToInt(dttb2.Rows[0]["BotL"]);
+                _cDevice.BotR2 = Lib.ToInt(dttb2.Rows[0]["BotR"]);
+                _cDevice.Left2 = Lib.ToInt(dttb2.Rows[0]["Left"]);
+                _cDevice.Right2 = Lib.ToInt(dttb2.Rows[0]["Right"]);
+                _cDevice.Result2 = Lib.ToInt(dttb2.Rows[0]["Result"]);
+                _cDevice.Bubble2 = Lib.ToInt(dttb2.Rows[0]["Bubble"]);
+                _cDevice.CompleteImage2 = Lib.ToInt(dttb2.Rows[0]["CompleteImage"]);
+                _cDevice.MarkNG2 = Lib.ToInt(dttb2.Rows[0]["MarkNG"]);
+                //TODO: 02/07/2021 Tạm fix để test
+                _cDevice.Triger2 = Lib.ToInt(dttb2.Rows[0]["Triger"]);
+                _cDevice.Position2 = Lib.ToInt(dttb2.Rows[0]["Position"]);
+                _cDevice.CompleteResult2 = Lib.ToInt(dttb2.Rows[0]["CompleteResult"]);
+                _cDevice.LenghL2 = Lib.ToInt(dttb2.Rows[0]["Lengh"]);
+                _cDevice.LenghR2 = Lib.ToInt(dttb2.Rows[0]["Width"]);
+                _cDevice.ScoreL2 = Lib.ToInt(dttb2.Rows[0]["ScoreL"]);
+                _cDevice.ScoreR2 = Lib.ToInt(dttb2.Rows[0]["ScoreR"]);
+                _cDevice.DataBarcode2 = Lib.ToInt(dttb2.Rows[0]["DataBarcode"]);
+            }
+            // Load Data Cam 2
+        }
         void WindowControlLoad()
         {
             _Window11 = WindowControl11.HalconWindow;
@@ -179,7 +275,6 @@ namespace SDV_OLB_v1
                     //HOperatorSet.SetFramegrabberParam(_frameGrabber2, "Gain", 18);
                     //HOperatorSet.SetFramegrabberParam(_frameGrabber2, "UserSetSelector", "UserSet1");
 
-
                     btnCam2.BackColor = colorCamConnected;
                     _camConect2 = true;
                     btnSettingCam2.Invoke((MethodInvoker)delegate
@@ -195,7 +290,93 @@ namespace SDV_OLB_v1
             });
         }
 
-            private void fmMain_Load(object sender, EventArgs e)
+        void connectPLCCam1()
+        {
+            string errMessage = string.Empty;
+            try
+            {
+                plcCAM1 = new PLC3eClient(_cDevice.IPAdress, _cDevice.Port1);
+                if (!plcCAM1.Connected) { errMessage = $"Connect PLC with Port {_cDevice.Port1} is error"; }
+                //HOperatorSet.OpenSocketConnect(_cDevice.IPAdress, _cDevice.Port1, new HTuple("protocol", "timeout"), new HTuple("TCP4", 1000), out _socketPLC);
+                else
+                {
+                    btnPLCconnect.BackColor = Color.Yellow;
+                    _isConnectPLC1 = true;
+                }
+
+            }
+            catch
+            {
+                errMessage = $"Connect PLC with Port {_cDevice.Port1} is error";
+                _isConnectPLC1 = false;
+            }
+
+
+            if (errMessage != string.Empty && !_isAuto)
+                MessageBox.Show(errMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+        public void connectPLCCam2()
+        {
+            string errMessage = string.Empty;
+            try
+            {
+                plcCAM2 = new PLC3eClient(_cDevice.IPAdress, _cDevice.Port2);
+                if (!plcCAM2.Connected) { errMessage = errMessage == string.Empty ? $"Connect PLC with Port {_cDevice.Port2} is error" : errMessage + $"\nConnect PLC with Port {_cDevice.Port2} is error"; }
+                else
+                {
+                    btnPLCconnect.BackColor = colorCamConnected;
+                    _isConnectPLC2 = true;
+                }
+            }
+            catch
+            {
+                errMessage = errMessage == string.Empty ? $"Connect PLC with Port {_cDevice.Port2} is error" : errMessage + $"\nConnect PLC with Port {_cDevice.Port2} is error";
+                _isConnectPLC2 = false;
+            }
+            if (errMessage != string.Empty && !_isAuto)
+                MessageBox.Show(errMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //try
+            //{
+            //    HOperatorSet.OpenSocketConnect(_cDevice.IPAdress, _cDevice.Port2, new HTuple("protocol", "timeout"), new HTuple("TCP4", 300.0), out _socketPLC2);
+            //    
+            //}
+            //catch (Exception)
+            //{
+
+            //}
+        }
+        private void disconnectPLC()
+        {
+
+            try
+            {
+                if (_isConnectPLC1)
+                {
+                    if (plcCAM1.CloseSecket())
+                    {
+                        plcCAM1 = null;
+                        _isConnectPLC1 = false;
+                        btnPLCconnect.BackColor = Color.HotPink;
+                    }
+                }
+                if (_isConnectPLC2)
+                {
+                    if (plcCAM2.CloseSecket())
+                    {
+                        plcCAM2 = null;
+                        _isConnectPLC2 = false;
+                        btnPLCconnect.BackColor = colorCamDisConnected;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+
+        private void fmMain_Load(object sender, EventArgs e)
         {
             GlobVar.RTCVision = new cSystemTypes();
             GlobVar.RTCVision.ReadDefault();
@@ -209,6 +390,61 @@ namespace SDV_OLB_v1
             WindowControlLoad();
             //setDrawAndLineWidth();
             connectAllCameraAsync();
+        }
+
+        private void btnSnapCam1_Click(object sender, EventArgs e)
+        {
+            HObject _ImgRun;
+            if (_frameGrabber1 != null)
+            {
+                if (_ImageManual1 != null) _ImageManual1.Dispose();
+
+            }
+            //_ImgRun = snap(_Window11, _frameGrabber1, _ImageManual1, 0, 0);
+
+            if (_isManual) { _ImgRun = ImgReadfolder; }
+            else { _ImgRun = snap(_Window11, _frameGrabber1, _ImageManual1, 0, 0); }
+            //RunCodeGetresult(1, _ImgRun, 1, 0, "");
+            if (_ImgRun != null) _ImgRun.Dispose();
+        }
+
+        private void btnSnapCam2_Click(object sender, EventArgs e)
+        {
+            HObject _ImgRun;
+            if (_frameGrabber2 != null)
+            {
+                if (_ImageManual2 != null) _ImageManual2.Dispose();
+                //_ImgRun = snap(_Window21, _frameGrabber2, _ImageManual2, 0, 0);
+            }
+            if (_isManual) { _ImgRun = ImgReadfolder; }
+            else { _ImgRun = snap(_Window12, _frameGrabber2, _ImageManual2, 0, 0); }
+            //RunCodeGetresult(2, _ImgRun, 2, 0, "");
+            if (_ImgRun != null) _ImgRun.Dispose();
+
+        }
+
+        private void btnPLCconnect_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (!_isConnectPLC1)
+                {
+                    connectPLCCam1();
+                }
+                if (!_isConnectPLC2)
+                {
+                    connectPLCCam2();
+                }
+                else
+                {
+                    disconnectPLC();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
     }
 }
