@@ -33,13 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.pnHeader = new System.Windows.Forms.Panel();
-            this.btnCam1 = new System.Windows.Forms.Button();
+            this.btnPLCconnect = new System.Windows.Forms.Button();
             this.btnCam2 = new System.Windows.Forms.Button();
+            this.btnCam1 = new System.Windows.Forms.Button();
             this.btnSettingCam1 = new System.Windows.Forms.Button();
             this.btnSettingCam2 = new System.Windows.Forms.Button();
             this.btnSnapCam1 = new System.Windows.Forms.Button();
             this.btnSnapCam2 = new System.Windows.Forms.Button();
-            this.btnPLCconnect = new System.Windows.Forms.Button();
             this.pnHeader.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -107,17 +107,18 @@
             this.pnHeader.Size = new System.Drawing.Size(1139, 210);
             this.pnHeader.TabIndex = 4;
             // 
-            // btnCam1
+            // btnPLCconnect
             // 
-            this.btnCam1.BackColor = System.Drawing.Color.Red;
-            this.btnCam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCam1.ForeColor = System.Drawing.Color.Black;
-            this.btnCam1.Location = new System.Drawing.Point(699, 0);
-            this.btnCam1.Name = "btnCam1";
-            this.btnCam1.Size = new System.Drawing.Size(159, 46);
-            this.btnCam1.TabIndex = 0;
-            this.btnCam1.Text = "CAMERA1";
-            this.btnCam1.UseVisualStyleBackColor = false;
+            this.btnPLCconnect.BackColor = System.Drawing.Color.Red;
+            this.btnPLCconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPLCconnect.ForeColor = System.Drawing.Color.Black;
+            this.btnPLCconnect.Location = new System.Drawing.Point(1009, 0);
+            this.btnPLCconnect.Name = "btnPLCconnect";
+            this.btnPLCconnect.Size = new System.Drawing.Size(130, 46);
+            this.btnPLCconnect.TabIndex = 2;
+            this.btnPLCconnect.Text = "PLC";
+            this.btnPLCconnect.UseVisualStyleBackColor = false;
+            this.btnPLCconnect.Click += new System.EventHandler(this.btnPLCconnect_Click);
             // 
             // btnCam2
             // 
@@ -131,6 +132,18 @@
             this.btnCam2.Text = "CAMERA2";
             this.btnCam2.UseVisualStyleBackColor = false;
             // 
+            // btnCam1
+            // 
+            this.btnCam1.BackColor = System.Drawing.Color.Red;
+            this.btnCam1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCam1.ForeColor = System.Drawing.Color.Black;
+            this.btnCam1.Location = new System.Drawing.Point(699, 0);
+            this.btnCam1.Name = "btnCam1";
+            this.btnCam1.Size = new System.Drawing.Size(159, 46);
+            this.btnCam1.TabIndex = 0;
+            this.btnCam1.Text = "CAMERA1";
+            this.btnCam1.UseVisualStyleBackColor = false;
+            // 
             // btnSettingCam1
             // 
             this.btnSettingCam1.Location = new System.Drawing.Point(555, 229);
@@ -138,6 +151,7 @@
             this.btnSettingCam1.Size = new System.Drawing.Size(24, 23);
             this.btnSettingCam1.TabIndex = 5;
             this.btnSettingCam1.UseVisualStyleBackColor = true;
+            this.btnSettingCam1.Click += new System.EventHandler(this.btnSettingCam1_Click);
             // 
             // btnSettingCam2
             // 
@@ -164,19 +178,6 @@
             this.btnSnapCam2.TabIndex = 8;
             this.btnSnapCam2.UseVisualStyleBackColor = true;
             this.btnSnapCam2.Click += new System.EventHandler(this.btnSnapCam2_Click);
-            // 
-            // btnPLCconnect
-            // 
-            this.btnPLCconnect.BackColor = System.Drawing.Color.Red;
-            this.btnPLCconnect.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPLCconnect.ForeColor = System.Drawing.Color.Black;
-            this.btnPLCconnect.Location = new System.Drawing.Point(1009, 0);
-            this.btnPLCconnect.Name = "btnPLCconnect";
-            this.btnPLCconnect.Size = new System.Drawing.Size(130, 46);
-            this.btnPLCconnect.TabIndex = 2;
-            this.btnPLCconnect.Text = "PLC";
-            this.btnPLCconnect.UseVisualStyleBackColor = false;
-            this.btnPLCconnect.Click += new System.EventHandler(this.btnPLCconnect_Click);
             // 
             // fmMain
             // 

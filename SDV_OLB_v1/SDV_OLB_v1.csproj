@@ -137,12 +137,25 @@
   <ItemGroup>
     <Compile Include="ClassSave\cDeviceSetting.cs" />
     <Compile Include="clsDataBinding\CamSetting.cs" />
+    <Compile Include="ClsProcess\cHdevProcedure.cs" />
     <Compile Include="ClsProcess\Lib.cs" />
     <Compile Include="Communication\PLC3eClient.cs" />
     <Compile Include="Communication\PLC3eSupports.cs" />
     <Compile Include="Communication\TCP4Client.cs" />
     <Compile Include="cSystemTypes.cs" />
     <Compile Include="cVariables.cs" />
+    <Compile Include="Form\fmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\fmLogin.Designer.cs">
+      <DependentUpon>fmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form\fmPLCHalcon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\fmPLCHalcon.Designer.cs">
+      <DependentUpon>fmPLCHalcon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,14 +168,29 @@
     <Compile Include="Form\fmMain.Designer.cs">
       <DependentUpon>fmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Form\frmCamTrain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form\frmCamTrain.Designer.cs">
+      <DependentUpon>frmCamTrain.cs</DependentUpon>
+    </Compile>
     <Compile Include="GlobFuncs.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form\fmLogin.resx">
+      <DependentUpon>fmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\fmMain.resx">
       <DependentUpon>fmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Form\fmPLCHalcon.resx">
+      <DependentUpon>fmPLCHalcon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form\Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form\frmCamTrain.resx">
+      <DependentUpon>frmCamTrain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

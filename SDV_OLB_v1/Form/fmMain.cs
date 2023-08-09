@@ -25,6 +25,7 @@ namespace SDV_OLB_v1
         bool _isConnectPLC1 = false;
         bool _isConnectPLC2 = false;
         bool _isAuto = false;
+        public HTuple _socketPLC;
         //----------------------------------------------------------------------------------//
         PLC3eClient plcCAM1 = null;
         PLC3eClient plcCAM2 = null;
@@ -33,7 +34,6 @@ namespace SDV_OLB_v1
         CamSetting _camSetting2 = new CamSetting();
 
         cDeviceSetting _cDevice = new cDeviceSetting();
-
 
         //########################## Frame and Himage
 
@@ -53,7 +53,13 @@ namespace SDV_OLB_v1
         //########  set color
         Color colorCamConnected = Color.FromArgb(111, 174, 70);
         Color colorCamDisConnected = Color.Red;
-
+        //####### Data trans Form
+        public static int sendsettingcam = 0;
+        public static int sendsettingcamDetect = 0;
+        public static bool showroi = false;
+        public static bool saveImgGraphics = false;
+        public static bool allRsOK = false;
+        public static bool saveImage = true;
         public fmMain()
         {
             InitializeComponent();
@@ -444,6 +450,17 @@ namespace SDV_OLB_v1
             catch (Exception ex)
             {
 
+            }
+        }
+
+        private void btnSettingCam1_Click(object sender, EventArgs e)
+        {
+            sendsettingcam = 1;
+            fmLogin frm = new fmLogin();
+            if (frm.ShowDialog() == DialogResult.OK) { }
+            {
+                frmCamTrain _trainCam = new frmCamTrain(this);
+                _trainCam.Show();
             }
         }
     }
