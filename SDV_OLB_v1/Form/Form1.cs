@@ -30,6 +30,7 @@ namespace SDV_OLB_v1
         int _exposuretime;
         int _gain;
         int _timeout;
+        string _pathVisionDB = "D:/RTC_Project/SDV OLB/SDV_OLB_v1/SDV_OLB_v1/bin/Debug/VisionDB.db";
         HFramegrabber Framgraber;
         HFramegrabber Framgraber2;
         public Form1()
@@ -208,7 +209,14 @@ namespace SDV_OLB_v1
             lbCurrentInterface.Text = cbxInterface.Text;
             lbCurrentDevice.Text = cbxCamera.Text;
         }
-
+        void getParameterCam()
+        {
+            int _camIndex = Convert.ToInt32(cbxCamIndex.SelectedItem);
+            DataTable dt = Lib.GetTableData(string.Format(@"select * from CameraSetting where CamIndex = {0}", _camIndex), _pathVisionDB);
+            nbExTime.Value = Lib.ToDecimal(dt.Rows[0]["ExposureTime"]);
+            nbGain.Value  = Lib.ToDecimal(dt.Rows[0]["Gain"]);
+            nbTimeout.Value = Lib.ToDecimal(dt.Rows[0]["Timeout"]);
+        }
         void saveParameterCam()
         {
             try
@@ -231,7 +239,7 @@ namespace SDV_OLB_v1
                 decimal timeout = nbTimeout.Value;
                 int _camIndex = Convert.ToInt32(cbxCamIndex.SelectedItem);
 
-                DataTable dt = Lib.GetTableData(string.Format(@"select * from CameraSetting where CamIndex = {0}", _camIndex), "D:/RTC_Project/SDV OLB/SDV_OLB_v1/SDV_OLB_v1/bin/Debug/VisionDB.db");
+                DataTable dt = Lib.GetTableData(string.Format(@"select * from CameraSetting where CamIndex = {0}", _camIndex), _pathVisionDB);
                 string datasave = "";
                 if (dt.Rows.Count > 0)
                 {
@@ -242,7 +250,7 @@ namespace SDV_OLB_v1
                     datasave = string.Format(@"insert into CameraSetting (Interface, Device, ExposureTime,Gain,Timeout,CamIndex) values ({0}, {1},{2},{3},{4},{5})", _interfacename, _device, exposuretime, gain, timeout, _camIndex);
                 }
 
-                Lib.ExecuteQuery(datasave, "D:/RTC_Project/SDV OLB/SDV_OLB_v1/SDV_OLB_v1/bin/Debug/VisionDB.db");
+                Lib.ExecuteQuery(datasave, _pathVisionDB);
                 MessageBox.Show("Save Success");
             }
             catch { 
@@ -284,5 +292,14 @@ namespace SDV_OLB_v1
             saveParameterCam();
         }
 
+        private void cbxCamIndex_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            getParameterCam();
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

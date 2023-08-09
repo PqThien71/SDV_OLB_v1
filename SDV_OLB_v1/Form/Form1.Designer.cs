@@ -146,6 +146,7 @@ namespace SDV_OLB_v1
             this.cbxCamIndex.Name = "cbxCamIndex";
             this.cbxCamIndex.Size = new System.Drawing.Size(215, 24);
             this.cbxCamIndex.TabIndex = 4;
+            this.cbxCamIndex.SelectedIndexChanged += new System.EventHandler(this.cbxCamIndex_SelectedIndexChanged);
             // 
             // label4
             // 
@@ -385,6 +386,7 @@ namespace SDV_OLB_v1
             this.WindowControl.Size = new System.Drawing.Size(644, 383);
             this.WindowControl.TabIndex = 56;
             this.WindowControl.WindowSize = new System.Drawing.Size(644, 383);
+            this.WindowControl.Load += new System.EventHandler(this.WindowControl_Load);
             // 
             // Form1
             // 
@@ -399,7 +401,7 @@ namespace SDV_OLB_v1
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Form1";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.WindowControl_Load);
+            this.Load += new System.EventHandler(this.Form1_Load);
             this.pnFindCam.ResumeLayout(false);
             this.pnFindCam.PerformLayout();
             this.pnSetCam.ResumeLayout(false);
