@@ -135,6 +135,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ClassSave\cBubbleSetting.cs" />
     <Compile Include="ClassSave\cDeviceSetting.cs" />
     <Compile Include="clsDataBinding\CamSetting.cs" />
     <Compile Include="ClsProcess\cHdevProcedure.cs" />

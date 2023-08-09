@@ -101,7 +101,9 @@
             // 
             this.pnHeader.Controls.Add(this.btnPLCconnect);
             this.pnHeader.Controls.Add(this.btnCam2);
+            this.pnHeader.Controls.Add(this.btnSettingCam2);
             this.pnHeader.Controls.Add(this.btnCam1);
+            this.pnHeader.Controls.Add(this.btnSettingCam1);
             this.pnHeader.Location = new System.Drawing.Point(9, 12);
             this.pnHeader.Name = "pnHeader";
             this.pnHeader.Size = new System.Drawing.Size(1139, 210);
@@ -146,16 +148,16 @@
             // 
             // btnSettingCam1
             // 
-            this.btnSettingCam1.Location = new System.Drawing.Point(555, 229);
+            this.btnSettingCam1.Location = new System.Drawing.Point(546, 168);
             this.btnSettingCam1.Name = "btnSettingCam1";
-            this.btnSettingCam1.Size = new System.Drawing.Size(24, 23);
+            this.btnSettingCam1.Size = new System.Drawing.Size(25, 23);
             this.btnSettingCam1.TabIndex = 5;
             this.btnSettingCam1.UseVisualStyleBackColor = true;
             this.btnSettingCam1.Click += new System.EventHandler(this.btnSettingCam1_Click);
             // 
             // btnSettingCam2
             // 
-            this.btnSettingCam2.Location = new System.Drawing.Point(1124, 230);
+            this.btnSettingCam2.Location = new System.Drawing.Point(1112, 184);
             this.btnSettingCam2.Name = "btnSettingCam2";
             this.btnSettingCam2.Size = new System.Drawing.Size(24, 23);
             this.btnSettingCam2.TabIndex = 6;
@@ -186,8 +188,6 @@
             this.ClientSize = new System.Drawing.Size(1160, 669);
             this.Controls.Add(this.btnSnapCam2);
             this.Controls.Add(this.btnSnapCam1);
-            this.Controls.Add(this.btnSettingCam2);
-            this.Controls.Add(this.btnSettingCam1);
             this.Controls.Add(this.pnHeader);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

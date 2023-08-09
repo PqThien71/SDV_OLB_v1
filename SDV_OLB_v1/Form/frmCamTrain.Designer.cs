@@ -1745,6 +1745,7 @@
             this.newRegion.TabIndex = 38;
             this.newRegion.Text = "New Region";
             this.newRegion.UseVisualStyleBackColor = true;
+            this.newRegion.Click += new System.EventHandler(this.newRegion_Click);
             // 
             // btneditRegion
             // 
