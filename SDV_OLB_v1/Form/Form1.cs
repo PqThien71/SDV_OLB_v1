@@ -30,7 +30,7 @@ namespace SDV_OLB_v1
         int _exposuretime;
         int _gain;
         int _timeout;
-        string _pathVisionDB = "D:/RTC_Project/SDV OLB/SDV_OLB_v1/SDV_OLB_v1/bin/Debug/VisionDB.db";
+        string _pathVisionDB = "D:/RTC_Project/SDV_OLB/SDV_OLB_v1/SDV_OLB_v1/bin/x64/Debug/VisionDB.db";
         HFramegrabber Framgraber;
         HFramegrabber Framgraber2;
         public Form1()

@@ -16,7 +16,7 @@ namespace SDV_OLB_v1
 {
     public partial class fmMain : Form
     {
-        string _pathVisionDB = "D:/RTC_Project/SDV OLB/SDV_OLB_v1/SDV_OLB_v1/bin/Debug/VisionDB.db";
+        string _pathVisionDB = "D:/RTC_Project/SDV_OLB/SDV_OLB_v1/SDV_OLB_v1/bin/x64/Debug/VisionDB.db";
         bool _camConect1 = false;
         bool _camConect2 = false;
         bool _isLiveCam1 = false;

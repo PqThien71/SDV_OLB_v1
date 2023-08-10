@@ -74,6 +74,26 @@
     <ErrorReport>prompt</ErrorReport>
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+    <Prefer32Bit>true</Prefer32Bit>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevExpress.Data.v13.2">
       <HintPath>..\..\RTCCheckSpon_060123_Phone\RTCCheckSpon_060123_Phone\HQ\bin\Debug\DevExpress.Data.v13.2.dll</HintPath>
@@ -99,10 +119,12 @@
     <Reference Include="DevExpress.XtraTreeList.v13.2">
       <HintPath>..\..\RTCCheckSpon_060123_Phone\RTCCheckSpon_060123_Phone\HQ\bin\Debug\DevExpress.XtraTreeList.v13.2.dll</HintPath>
     </Reference>
-    <Reference Include="halcondotnet">
+    <Reference Include="halcondotnet, Version=22.11.2.0, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\MVTec\HALCON-22.11-Steady\bin\dotnet20\halcondotnet.dll</HintPath>
     </Reference>
-    <Reference Include="hdevenginedotnet">
+    <Reference Include="hdevenginedotnet, Version=22.11.2.0, Culture=neutral, PublicKeyToken=4973bed59ddbf2b8, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files\MVTec\HALCON-22.11-Steady\bin\dotnet20\hdevenginedotnet.dll</HintPath>
     </Reference>
     <Reference Include="log4net, Version=2.0.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
@@ -145,6 +167,12 @@
     <Compile Include="Communication\TCP4Client.cs" />
     <Compile Include="cSystemTypes.cs" />
     <Compile Include="cVariables.cs" />
+    <Compile Include="Form2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form2.Designer.cs">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Form\fmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

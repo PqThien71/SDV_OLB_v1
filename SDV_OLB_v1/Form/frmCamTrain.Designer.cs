@@ -1247,7 +1247,7 @@
             this.Fit1,
             this.zoomPauseToolStripMenuItem});
             this.zoomToolStripMenuItem1.Name = "zoomToolStripMenuItem1";
-            this.zoomToolStripMenuItem1.Size = new System.Drawing.Size(210, 24);
+            this.zoomToolStripMenuItem1.Size = new System.Drawing.Size(118, 24);
             this.zoomToolStripMenuItem1.Text = "Zoom";
             // 
             // ZoomIn1
@@ -1293,6 +1293,7 @@
             this.btnSnap.Size = new System.Drawing.Size(52, 46);
             this.btnSnap.TabIndex = 36;
             this.btnSnap.UseVisualStyleBackColor = true;
+            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click);
             // 
             // label24
             // 

@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Web.UI.WebControls;
 
 namespace SDV_OLB_v1
 {
@@ -17,15 +18,19 @@ namespace SDV_OLB_v1
     {
 
         //------------------------------------------/////
+        double X1, X2, Y1, Y2, Theta;
+
+
+
         private HWindow _WindowTrain;
-        string _pathVisionDB = "D:/RTC_Project/SDV OLB/SDV_OLB_v1/SDV_OLB_v1/bin/Debug/VisionDB.db";
+        string _pathVisionDB = "D:/RTC_Project/SDV_OLB/SDV_OLB_v1/SDV_OLB_v1/bin/x64/Debug/VisionDB.db";
         public fmMain _frmMain;
         public static HTuple _framGraber1;
         public static HTuple _framGraber2;
         List<cKeoSetting> lstParamSettingGlue = new List<cKeoSetting>();
         List<cBubbleSetting> lstParamSettingBubble = new List<cBubbleSetting>();
         private HDrawingObject _drawing_object_Region;
-
+        HObject imageSnap = null;
 
         HDevEngine _procderduce = new HDevEngine();
         string _procedurePath = Application.StartupPath + @"\vision\HalconProcedures";
@@ -317,6 +322,38 @@ namespace SDV_OLB_v1
 
 
         }
+        void creatModelRegion(double x1, double y1, double theta, double x2, double y2)
+        {
+            if (_drawing_object_Region != null)
+            {
+                _drawing_object_Region.Dispose();
+                _drawing_object_Region = null;
+            }
+
+            _drawing_object_Region = HDrawingObject.CreateDrawingObject(HDrawingObject.HDrawingObjectType.RECTANGLE2, x1, y1, theta, x2, y2);
+            _drawing_object_Region.SetDrawingObjectParams("color", "red");
+            _drawing_object_Region.OnDrag(GetPosition);
+            _drawing_object_Region.OnResize(GetPosition);
+            _WindowTrain.AttachDrawingObjectToWindow(_drawing_object_Region);
+        }
+        private void GetPosition(HDrawingObject dobj, HWindow hwin, string type)
+        {
+            HRegion region = new HRegion(dobj.GetDrawingObjectIconic());
+            HOperatorSet.RegionFeatures(region, new HTuple(new string[] { "row", "column", "rect2_len1", "rect2_len2", "phi" }), out HTuple values);
+
+            double[] arrPosition = values.ToDArr();
+            txtX1.Value = Lib.ToDecimal(arrPosition[0]);
+            txtY1.Value = Lib.ToDecimal(arrPosition[1]);
+            txtX2.Value = Lib.ToDecimal(arrPosition[2]);
+            txtY2.Value = Lib.ToDecimal(arrPosition[3]);
+            txtTheTa.Value = Lib.ToDecimal(arrPosition[4]);
+
+            X1 = Convert.ToDouble(txtX1.Value);
+            Y1 = Convert.ToDouble(txtY1.Value);
+            X2 = Convert.ToDouble(txtX2.Value);
+            Y2 = Convert.ToDouble(txtY2.Value);
+            Theta = Convert.ToDouble(txtTheTa.Value);
+        }
         private void configLoad()
         {
             DataTable dt = Lib.GetTableData("select * from Config ",_pathVisionDB);
@@ -332,6 +369,41 @@ namespace SDV_OLB_v1
         {
             InitializeComponent();
             _frmMain = frMmain;
+        }
+        private void btnSnap_Click(object sender, EventArgs e)
+        {
+            int IndexCam = Convert.ToInt16(cbxCam.SelectedItem);
+            snapImage(IndexCam, 0);
+        }
+
+        private void snapImage(int IndexCam, int Posttion)
+        {
+            HTuple _Frambraber = null;
+            if (IndexCam == 1)
+            {
+                _Frambraber = _framGraber1;
+
+            }
+            if (IndexCam == 2)
+            {
+                _Frambraber = _framGraber2;
+            }
+            if (_Frambraber == null) return;
+            try
+            {
+                imageSnap.Dispose();
+            }
+            catch
+            {
+
+            }
+            //_Img = _frameGrabber.GrabImage();
+            HOperatorSet.GrabImage(out imageSnap, _Frambraber);
+            HOperatorSet.RotateImage(imageSnap, out imageSnap, 180, "constant");
+            HOperatorSet.GetImageSize(imageSnap, out HTuple _width, out HTuple _height);
+            _WindowTrain.SetPart(new HTuple(0), new HTuple(0), _height, _width);
+            //SmartSetPart(image, WindowControl);
+            imageSnap.DispObj(_WindowTrain);
         }
 
         private void frmCamTrain_Load(object sender, EventArgs e)
